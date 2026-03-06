@@ -1105,6 +1105,8 @@ function submitLead(){
   document.getElementById('leadForm').style.display = 'none';
   document.getElementById('formSuccess').classList.add('show');
   document.getElementById('formNote').style.display = 'none';
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({'event': 'whatsapp_click'});
   setTimeout(() => window.open(`https://wa.me/5511918536037?text=${msg}`, '_blank'), 700);
 }
 
