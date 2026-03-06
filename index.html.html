@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protocolo 360 — Alline Dutra</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600&family=Montserrat:ital,wght@1,300&display=swap" rel="stylesheet">
+<!-- Brittany Signature via CDN alternative: use Dancing Script as closest web-safe cursive -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+
+/* ═══════════════════════════════════════════
+   BRAND TOKENS
+═══════════════════════════════════════════ */
+:root {
+  --grafite:    #1A1C1D;
+  --grafite2:   #141516;
+  --grafite3:   #222526;
+  --grafite4:   #2e3133;
+  --areia:      #F2EDE4;
+  --areia-dim:  rgba(242,237,228,0.06);
+  --cobre:      #D4A081;
+  --cobre-light:#e8bda4;
+  --cobre-dim:  rgba(212,160,129,0.12);
+  --cobre-glow: rgba(212,160,129,0.06);
+  --text-dark:  #c8c2b8;
+  --muted:      #6e6b66;
+  --border:     rgba(212,160,129,0.15);
+  --border-soft: rgba(242,237,228,0.08);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--grafite);
+  color: var(--areia);
+  overflow-x: hidden;
+  font-weight: 300;
+}
+
+/* ── GRAIN TEXTURE ── */
+body::after {
+  content:'';
+  position:fixed; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.022;
+  pointer-events:none;
+  z-index:9999;
+}
+
+/* ── TYPOGRAPHY ── */
+.cinzel      { font-family:'Cinzel', serif; }
+.cursiva     { font-family:'Cormorant Garamond', serif; font-style:italic; font-weight:300; }
+.montserrat  { font-family:'Montserrat', sans-serif; }
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 100px 24px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Radial warm glow */
+.hero::before {
+  content:'';
+  position:absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -60%);
+  width: 800px; height: 600px;
+  background: radial-gradient(ellipse, rgba(212,160,129,0.07) 0%, transparent 68%);
+  pointer-events:none;
+}
+
+/* Thin horizontal line — luxury detail */
+.hero::after {
+  content:'';
+  position:absolute;
+  bottom: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cobre-dim), var(--cobre), var(--cobre-dim), transparent);
+}
+
+.hero-inner { position:relative; z-index:1; max-width: 840px; }
+
+.hero-eyebrow {
+  display:inline-flex;
+  align-items:center;
+  gap: 16px;
+  margin-bottom: 52px;
+  animation: fadeUp 1s ease both;
+}
+
+.eyebrow-line {
+  width: 40px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cobre));
+}
+.eyebrow-line.right {
+  background: linear-gradient(90deg, var(--cobre), transparent);
+}
+
+.eyebrow-text {
+  font-family:'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--cobre);
+  font-weight: 400;
+}
+
+.hero h1 {
+  font-family:'Cinzel', serif;
+  font-size: clamp(2rem, 5.5vw, 4.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  color: var(--areia);
+  margin-bottom: 16px;
+  animation: fadeUp 1s 0.1s ease both;
+}
+
+.hero-accent {
+  font-family:'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(2.4rem, 6.5vw, 5rem);
+  color: var(--cobre);
+  display: block;
+  line-height: 1.05;
+  margin-bottom: 8px;
+  animation: fadeUp 1s 0.15s ease both;
+}
+
+.hero-sub {
+  margin: 32px auto 0;
+  max-width: 520px;
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--text-dark);
+  line-height: 1.85;
+  animation: fadeUp 1s 0.25s ease both;
+}
+
+.hero-cta {
+  margin-top: 56px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap: 16px;
+  animation: fadeUp 1s 0.35s ease both;
+}
+
+.btn-primary {
+  display:inline-flex;
+  align-items:center;
+  gap: 12px;
+  background: var(--cobre);
+  color: var(--grafite);
+  font-family:'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 20px 44px;
+  border-radius: 2px;
+  text-decoration:none;
+  border:none; cursor:pointer;
+  transition: all 0.3s;
+  position:relative;
+  overflow:hidden;
+}
+
+.btn-primary::before {
+  content:'';
+  position:absolute; inset:0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent);
+  opacity:0;
+  transition: opacity 0.3s;
+}
+
+.btn-primary:hover {
+  background: var(--cobre-light);
+  transform: translateY(-3px);
+  box-shadow: 0 20px 50px rgba(212,160,129,0.3);
+}
+.btn-primary:hover::before { opacity:1; }
+
+.hero-note {
+  font-size: 11px;
+  color: var(--muted);
+  font-family:'Montserrat', sans-serif;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════
+   DIVIDERS
+═══════════════════════════════════════════ */
+.ornament {
+  text-align:center;
+  padding: 0 24px;
+  margin: 0 auto;
+}
+.ornament-inner {
+  display:inline-flex;
+  align-items:center;
+  gap: 20px;
+  color: var(--cobre);
+  opacity: 0.5;
+}
+.orn-line { width: 80px; height:1px; background: linear-gradient(90deg, transparent, var(--cobre)); }
+.orn-line.r { background: linear-gradient(90deg, var(--cobre), transparent); }
+.orn-diamond { width:5px; height:5px; background:var(--cobre); transform:rotate(45deg); flex-shrink:0; }
+.orn-text { font-family:'Cinzel',serif; font-size:9px; letter-spacing:3px; text-transform:uppercase; }
+
+/* ═══════════════════════════════════════════
+   DOR SECTION — off-white bg
+═══════════════════════════════════════════ */
+.dor-section {
+  background: var(--areia);
+  color: var(--grafite);
+  padding: 110px 24px;
+}
+
+.dor-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.dor-label {
+  font-family:'Cinzel',serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform:uppercase;
+  color: var(--cobre);
+  display:block;
+  margin-bottom: 36px;
+}
+
+.dor-intro {
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--grafite);
+  margin-bottom: 40px;
+}
+
+.dor-intro strong {
+  font-weight: 600;
+  font-style:normal;
+  color: var(--grafite);
+}
+
+.dor-body {
+  font-size: 15px;
+  font-weight: 300;
+  color: #4a4845;
+  line-height: 1.85;
+  margin-bottom: 44px;
+}
+
+.checks {
+  display:flex;
+  flex-direction:column;
+  gap: 12px;
+  margin-bottom: 44px;
+}
+
+.check-item {
+  display:flex;
+  align-items:flex-start;
+  gap: 16px;
+  padding: 18px 22px;
+  background: white;
+  border: 1px solid rgba(26,28,29,0.08);
+  border-left: 3px solid var(--cobre);
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #3a3835;
+  line-height: 1.6;
+  transition: border-left-color 0.2s, box-shadow 0.2s;
+}
+.check-item:hover {
+  border-left-color: #1A1C1D;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+.check-icon {
+  font-family:'Cinzel',serif;
+  font-size: 11px;
+  color: var(--cobre);
+  flex-shrink:0;
+  margin-top:2px;
+  letter-spacing:1px;
+}
+
+.dor-punch {
+  font-size: 15px;
+  font-style:italic;
+  color: #5a5855;
+  line-height: 1.8;
+  padding: 24px 28px;
+  border: 1px solid rgba(212,160,129,0.3);
+  border-left: 3px solid var(--cobre);
+  background: rgba(212,160,129,0.05);
+  border-radius: 2px;
+}
+
+/* ═══════════════════════════════════════════
+   SOLUÇÃO — dark bg
+═══════════════════════════════════════════ */
+.solucao-section {
+  padding: 120px 24px;
+  position:relative;
+  overflow:hidden;
+}
+
+.solucao-section::before {
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 10%, var(--cobre-dim) 50%, transparent 90%);
+}
+
+.solucao-inner {
+  max-width: 920px;
+  margin: 0 auto;
+  text-align:center;
+}
+
+.section-label-dark {
+  font-family:'Cinzel',serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform:uppercase;
+  color: var(--cobre);
+  display:block;
+  margin-bottom: 24px;
+}
+
+.solucao-h2 {
+  font-family:'Cinzel',serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--areia);
+  margin-bottom: 12px;
+}
+
+.solucao-cursiva {
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-weight:300;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: var(--cobre);
+  display:block;
+  line-height: 1.2;
+  margin-bottom: 28px;
+}
+
+.solucao-sub {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text-dark);
+  max-width: 540px;
+  margin: 0 auto 72px;
+  line-height: 1.85;
+}
+
+/* FASES */
+.fases {
+  display:grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow:hidden;
+}
+
+.fase {
+  background: var(--grafite3);
+  padding: 44px 32px;
+  text-align:left;
+  position:relative;
+  transition: background 0.25s;
+}
+
+.fase::before {
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0;
+  height: 2px;
+  background: var(--cobre);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.fase:hover { background: #262a2b; }
+.fase:hover::before { transform: scaleX(1); }
+
+.fase-num {
+  font-family:'Cinzel',serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--cobre);
+  opacity: 0.6;
+  margin-bottom: 20px;
+  display:block;
+}
+
+.fase h3 {
+  font-family:'Cinzel',serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform:uppercase;
+  color: var(--areia);
+  margin-bottom: 16px;
+}
+
+.fase p {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text-dark);
+  line-height: 1.8;
+}
+
+/* ═══════════════════════════════════════════
+   TRANSFORMAÇÃO — areia bg
+═══════════════════════════════════════════ */
+.transf-section {
+  background: var(--areia);
+  padding: 120px 24px;
+}
+
+.transf-inner {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.transf-label {
+  font-family:'Cinzel',serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--cobre);
+  display:block;
+  margin-bottom: 32px;
+}
+
+.transf-h2 {
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 300;
+  color: var(--grafite);
+  line-height: 1.35;
+  margin-bottom: 36px;
+}
+
+.transf-h2 strong {
+  font-family:'Cinzel',serif;
+  font-style:normal;
+  font-weight:700;
+  font-size:0.75em;
+  color: var(--grafite);
+}
+
+.transf-p {
+  font-size: 15px;
+  font-weight: 300;
+  color: #4a4845;
+  line-height: 1.9;
+  margin-bottom: 20px;
+}
+
+.transf-bold {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--grafite);
+  line-height: 1.7;
+  padding: 24px 0;
+  border-top: 1px solid rgba(26,28,29,0.1);
+  border-bottom: 1px solid rgba(26,28,29,0.1);
+  margin-top: 8px;
+}
+
+/* ═══════════════════════════════════════════
+   DEPOIMENTO
+═══════════════════════════════════════════ */
+.dep-section {
+  background: var(--grafite2);
+  padding: 100px 24px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position:relative;
+  overflow:hidden;
+}
+
+.dep-section::before {
+  content:'';
+  position:absolute;
+  top:50%; left:50%;
+  transform: translate(-50%,-50%);
+  width: 600px; height: 400px;
+  background: radial-gradient(ellipse, var(--cobre-glow) 0%, transparent 70%);
+  pointer-events:none;
+}
+
+.dep-inner {
+  max-width: 660px;
+  margin: 0 auto;
+  text-align:center;
+  position:relative;
+  z-index:1;
+}
+
+.dep-stars {
+  display:flex;
+  gap: 8px;
+  justify-content:center;
+  margin-bottom: 32px;
+}
+
+.dep-star {
+  width: 8px; height: 8px;
+  background: var(--cobre);
+  transform: rotate(45deg);
+}
+
+.dep-quote {
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size: clamp(1.3rem, 3vw, 1.9rem);
+  font-weight: 300;
+  color: var(--areia);
+  line-height: 1.6;
+  margin-bottom: 36px;
+  position:relative;
+}
+
+.dep-quote::before {
+  content:'"';
+  font-size: 8rem;
+  font-family:'Cormorant Garamond',serif;
+  color: var(--cobre);
+  opacity: 0.15;
+  position:absolute;
+  top:-50px; left:-30px;
+  line-height:1;
+}
+
+.dep-cite {
+  font-family:'Cinzel',serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--cobre);
+  text-transform:uppercase;
+}
+
+/* ═══════════════════════════════════════════
+   PARA QUEM
+═══════════════════════════════════════════ */
+.pq-section {
+  padding: 120px 24px;
+}
+
+.pq-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.pq-h2 {
+  font-family:'Cinzel',serif;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: 700;
+  text-align:center;
+  color: var(--areia);
+  margin-bottom: 16px;
+}
+
+.pq-sub-cursiva {
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  color: var(--cobre);
+  text-align:center;
+  display:block;
+  margin-bottom: 64px;
+}
+
+.pq-grid {
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.pq-col {
+  padding: 36px;
+  border: 1px solid var(--border-soft);
+  border-radius: 2px;
+}
+
+.pq-col.sim {
+  background: rgba(242,237,228,0.03);
+  border-color: rgba(212,160,129,0.2);
+}
+
+.pq-col.nao {
+  background: rgba(242,237,228,0.015);
+  border-color: rgba(242,237,228,0.06);
+}
+
+.pq-col-label {
+  font-family:'Cinzel',serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform:uppercase;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  display:block;
+}
+
+.pq-col.sim .pq-col-label { color: var(--cobre); border-bottom: 1px solid rgba(212,160,129,0.2); }
+.pq-col.nao .pq-col-label { color: var(--muted); border-bottom: 1px solid var(--border-soft); }
+
+.pq-item {
+  display:flex;
+  align-items:flex-start;
+  gap: 14px;
+  padding: 12px 0;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text-dark);
+  line-height: 1.6;
+  border-bottom: 1px solid var(--border-soft);
+}
+.pq-item:last-child { border-bottom:none; }
+
+.pq-dot {
+  width: 5px; height:5px;
+  border-radius:50%;
+  flex-shrink:0;
+  margin-top:6px;
+}
+.pq-col.sim .pq-dot { background: var(--cobre); }
+.pq-col.nao .pq-dot { background: var(--muted); }
+
+/* ═══════════════════════════════════════════
+   ESCASSEZ + CTA FINAL
+═══════════════════════════════════════════ */
+.cta-section {
+  background: var(--areia);
+  padding: 120px 24px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.escassez {
+  display:inline-flex;
+  align-items:center;
+  gap: 10px;
+  background: rgba(26,28,29,0.06);
+  border: 1px solid rgba(26,28,29,0.12);
+  border-radius: 2px;
+  padding: 10px 22px;
+  font-family:'Cinzel',serif;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform:uppercase;
+  color: var(--grafite);
+  margin-bottom: 48px;
+}
+
+.escassez-dot {
+  width:6px; height:6px;
+  border-radius:50%;
+  background: var(--cobre);
+  animation: pulse 2s infinite;
+}
+
+.cta-h2 {
+  font-family:'Cinzel',serif;
+  font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  color: var(--grafite);
+  margin-bottom: 12px;
+}
+
+.cta-cursiva {
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  font-weight: 300;
+  color: var(--cobre);
+  display:block;
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+.cta-sub {
+  font-size: 14px;
+  font-weight: 300;
+  color: #5a5855;
+  max-width: 440px;
+  margin: 0 auto 52px;
+  line-height: 1.8;
+}
+
+/* FORM */
+.lead-form {
+  display:flex;
+  flex-direction:column;
+  gap: 12px;
+  max-width: 420px;
+  margin: 0 auto 16px;
+}
+
+.lead-input {
+  background: white;
+  border: 1px solid rgba(26,28,29,0.15);
+  border-radius: 2px;
+  padding: 18px 20px;
+  font-size: 14px;
+  font-weight: 300;
+  font-family:'Montserrat',sans-serif;
+  color: var(--grafite);
+  outline:none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.lead-input::placeholder { color: #b0aba4; }
+
+.lead-input:focus {
+  border-color: var(--cobre);
+  box-shadow: 0 0 0 3px rgba(212,160,129,0.1);
+}
+
+.btn-cta-form {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: 12px;
+  background: var(--grafite);
+  color: var(--areia);
+  font-family:'Montserrat',sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform:uppercase;
+  padding: 20px 36px;
+  border-radius: 2px;
+  border:none;
+  cursor:pointer;
+  width:100%;
+  transition: all 0.3s;
+}
+
+.btn-cta-form:hover {
+  background: var(--cobre);
+  color: var(--grafite);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(212,160,129,0.25);
+}
+
+.form-note {
+  font-size: 11px;
+  color: #9a9590;
+  font-family:'Montserrat',sans-serif;
+  letter-spacing: 1px;
+  text-align:center;
+}
+
+.form-success {
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  gap: 16px;
+  padding: 44px 32px;
+  background: white;
+  border: 1px solid rgba(212,160,129,0.3);
+  border-top: 3px solid var(--cobre);
+  border-radius: 2px;
+  max-width: 420px;
+  margin: 0 auto;
+}
+.form-success.show { display:flex; }
+
+.success-icon {
+  width: 52px; height: 52px;
+  border: 1.5px solid var(--cobre);
+  border-radius: 50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size: 20px;
+  color: var(--cobre);
+  font-family:'Cinzel',serif;
+}
+
+.form-success p {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--grafite);
+  text-align:center;
+  line-height: 1.7;
+}
+
+.form-success small {
+  font-family:'Cinzel',serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform:uppercase;
+  color: var(--cobre);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--grafite2);
+  padding: 48px 24px;
+  text-align:center;
+  border-top: 1px solid var(--border);
+}
+
+.footer-logo {
+  font-family:'Cinzel',serif;
+  font-size: 13px;
+  letter-spacing: 4px;
+  text-transform:uppercase;
+  color: var(--cobre);
+  margin-bottom: 8px;
+}
+
+.footer-cursiva {
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size: 16px;
+  color: var(--text-dark);
+  margin-bottom: 24px;
+}
+
+.footer-copy {
+  font-size: 11px;
+  color: var(--muted);
+  font-family:'Montserrat',sans-serif;
+  letter-spacing: 1px;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(28px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+@keyframes pulse {
+  0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.65)}
+}
+
+@keyframes shake {
+  0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)}
+}
+
+.reveal {
+  opacity:0;
+  transform:translateY(32px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity:1;
+  transform:translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+  .fases { grid-template-columns:1fr; }
+  .pq-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-inner">
+
+    <div class="hero-eyebrow">
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-text">Protocolo 360</span>
+      <span class="eyebrow-line right"></span>
+    </div>
+
+    <h1>Tenha o sistema de atração<br>de paciente particular</h1>
+    <span class="hero-accent">funcionando 24hs por dia</span>
+
+    <p class="hero-sub">Posicionamento, atração e conversão — as três frentes funcionando ao mesmo tempo. Sem depender só de indicação. Sem depender só de anúncio.</p>
+
+    <div class="hero-cta">
+      <a href="#captura" class="btn-primary" onclick="document.getElementById('captura').scrollIntoView({behavior:'smooth'});return false;">
+        Quero entender o Protocolo 360
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <span class="hero-note">Sem compromisso — só uma conversa honesta</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ DOR ═══ -->
+<section class="dor-section">
+  <div class="dor-inner reveal">
+    <span class="dor-label">— O Problema</span>
+
+    <p class="dor-intro">
+      Se você acorda todos os dias com a sensação de que é um <strong>escravo do consultório</strong>, atendendo dezenas de pacientes por convênio para mal conseguir fechar o caixa no final do mês — você está no lugar certo.
+    </p>
+
+    <p class="dor-body">Seu conhecimento vale muito. Mas o mercado só te paga o que a sua estrutura aparenta valer. Você se encaixa em um desses cenários?</p>
+
+    <div class="checks">
+      <div class="check-item reveal reveal-delay-1">
+        <span class="check-icon">✦</span>
+        Você tem a agenda vazia e não sabe atrair pacientes particulares.
+      </div>
+      <div class="check-item reveal reveal-delay-2">
+        <span class="check-icon">✦</span>
+        Ou você já tem agenda — mas cheia de convênio. Trabalha demais e o caixa não fecha.
+      </div>
+      <div class="check-item reveal reveal-delay-3">
+        <span class="check-icon">✦</span>
+        Você já investiu em anúncio, já contratou agência. Os leads chegaram — mas não viraram agendamentos.
+      </div>
+    </div>
+
+    <p class="dor-punch">
+      O problema é que ninguém olhou para o seu negócio como um todo. Enquanto só uma dessas partes estiver quebrada, o resultado não vem. É por isso que leads chegam e não viram consulta.
+    </p>
+  </div>
+</section>
+
+<!-- ═══ ORNAMENT ═══ -->
+<div class="ornament" style="padding: 0; background:var(--grafite); height:1px; background: linear-gradient(90deg, transparent, rgba(212,160,129,0.3), transparent);"></div>
+
+<!-- ═══ SOLUÇÃO ═══ -->
+<section class="solucao-section">
+  <div class="solucao-inner reveal">
+    <span class="section-label-dark">— A Solução</span>
+    <h2 class="solucao-h2">O Protocolo 360 não é mais uma agência</h2>
+    <span class="solucao-cursiva">que sobe anúncio e some.</span>
+    <p class="solucao-sub">É uma implementação personalizada, com diagnóstico, curadoria, execução e acompanhamento próximo. Trabalhamos com poucos consultórios por vez — por escolha, não por limitação.</p>
+
+    <div class="fases">
+      <div class="fase reveal">
+        <span class="fase-num">Fase 01</span>
+        <h3>Vitrine</h3>
+        <p>Construímos sua autoridade digital do zero. Instagram, Google Meu Negócio e landing page — tudo posicionado para o paciente confiar antes mesmo de te contatar. Ninguém paga caro por algo que parece barato.</p>
+      </div>
+      <div class="fase reveal reveal-delay-1">
+        <span class="fase-num">Fase 02</span>
+        <h3>Atração</h3>
+        <p>Google Ads para quem já está buscando seu serviço agora. Meta Ads para construir desejo e autoridade na sua região. Gestão diária para garantir que cada centavo investido gera retorno.</p>
+      </div>
+      <div class="fase reveal reveal-delay-2">
+        <span class="fase-num">Fase 03</span>
+        <h3>Conversão</h3>
+        <p>Scripts de atendimento, manual de objeções e treinamento da equipe para transformar contato em consulta agendada. De nada adianta o paciente certo chegar se a recepção perde o agendamento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TRANSFORMAÇÃO ═══ -->
+<section class="transf-section">
+  <div class="transf-inner reveal">
+    <span class="transf-label">— A Transformação</span>
+
+    <h2 class="transf-h2">
+      Depois do Protocolo 360, você para de se perguntar se vai ter <em>paciente particular essa semana.</em>
+    </h2>
+
+    <p class="transf-p">Porque tem uma engrenagem rodando por você 24 horas — enquanto você atende, descansa ou passa tempo com a família.</p>
+
+    <p class="transf-p">O paciente particular te encontra no Google, vê sua autoridade no Instagram, chega convencido — e a sua recepção sabe exatamente como conduzir até o agendamento.</p>
+
+    <p class="transf-bold">Você para de trocar hora por convênio. Começa a escolher quem senta na sua cadeira. E o caixa finalmente reflete o quanto você vale.</p>
+  </div>
+</section>
+
+<!-- ═══ DEPOIMENTO ═══ -->
+<section class="dep-section">
+  <div class="dep-inner reveal">
+    <div class="dep-stars">
+      <span class="dep-star"></span>
+      <span class="dep-star"></span>
+      <span class="dep-star"></span>
+      <span class="dep-star"></span>
+      <span class="dep-star"></span>
+    </div>
+    <blockquote class="dep-quote">
+      Do zero pacientes para agenda equilibrada com pacientes particulares desde o primeiro mês — sem indicação, sem histórico.
+    </blockquote>
+    <cite class="dep-cite">Cliente — Acupunturista</cite>
+  </div>
+</section>
+
+<!-- ═══ PARA QUEM ═══ -->
+<section class="pq-section">
+  <div class="pq-inner reveal">
+    <h2 class="pq-h2">Para quem é</h2>
+    <span class="pq-sub-cursiva">— e para quem não é</span>
+
+    <div class="pq-grid">
+      <div class="pq-col sim">
+        <span class="pq-col-label">✦ É pra você se</span>
+        <div class="pq-item"><span class="pq-dot"></span>Você quer reduzir ou eliminar a dependência de convênios</div>
+        <div class="pq-item"><span class="pq-dot"></span>Você quer pacientes que valorizam e pagam pelo seu trabalho</div>
+        <div class="pq-item"><span class="pq-dot"></span>Você já tentou agências e não teve resultado real</div>
+        <div class="pq-item"><span class="pq-dot"></span>Você quer resolver a falta de pacientes — não de leads</div>
+      </div>
+      <div class="pq-col nao">
+        <span class="pq-col-label">✕ Não é pra você se</span>
+        <div class="pq-item"><span class="pq-dot"></span>Você quer resultado sem se comprometer com o processo</div>
+        <div class="pq-item"><span class="pq-dot"></span>Você busca volume, não qualidade de pacientes</div>
+        <div class="pq-item"><span class="pq-dot"></span>Você acha que é só fazer anúncio pra ter agenda cheia</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA FINAL ═══ -->
+<section class="cta-section" id="captura">
+  <div class="reveal">
+    <span class="escassez"><span class="escassez-dot"></span>Vagas limitadas — poucos consultórios por vez</span>
+
+    <h2 class="cta-h2">Pronto para ter o sistema</h2>
+    <span class="cta-cursiva">trabalhando por você?</span>
+
+    <p class="cta-sub">Sem compromisso, sem script de vendas. Só uma conversa honesta sobre o que você precisa.</p>
+
+    <div class="lead-form" id="leadForm">
+      <input class="lead-input" id="lead-nome" type="text" placeholder="Seu nome" autocomplete="off">
+      <input class="lead-input" id="lead-wpp" type="tel" placeholder="WhatsApp com DDD" autocomplete="off">
+      <button class="btn-cta-form" onclick="submitLead()">
+        Quero entender o Protocolo 360
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+
+    <div class="form-success" id="formSuccess">
+      <div class="success-icon">✓</div>
+      <p>Perfeito! Em breve entro em contato pelo WhatsApp.</p>
+      <small>Protocolo 360 — Alline Dutra</small>
+    </div>
+
+    <p class="form-note" id="formNote" style="margin-top:14px">🔒 Seus dados não serão compartilhados.</p>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-logo">Protocolo 360</div>
+  <div class="footer-cursiva">Alline Dutra</div>
+  <div class="footer-copy">© 2026 — Todos os direitos reservados</div>
+</footer>
+
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Lead form
+function submitLead(){
+  const nome = document.getElementById('lead-nome').value.trim();
+  const wpp  = document.getElementById('lead-wpp').value.trim();
+  if(!nome){ shake('lead-nome'); return; }
+  if(!wpp || wpp.replace(/\D/g,'').length < 10){ shake('lead-wpp'); return; }
+  const msg = encodeURIComponent(`Olá! Me chamo ${nome} e quero entender como o Protocolo 360 pode me ajudar.`);
+  document.getElementById('leadForm').style.display = 'none';
+  document.getElementById('formSuccess').classList.add('show');
+  document.getElementById('formNote').style.display = 'none';
+  setTimeout(() => window.open(`https://wa.me/5511918536037?text=${msg}`, '_blank'), 700);
+}
+
+function shake(id){
+  const el = document.getElementById(id);
+  el.style.borderColor = '#c0392b';
+  el.style.animation = 'shake 0.4s ease';
+  setTimeout(()=>{ el.style.animation=''; el.style.borderColor=''; }, 500);
+}
+
+// Phone mask
+document.getElementById('lead-wpp').addEventListener('input', function(){
+  let v = this.value.replace(/\D/g,'').slice(0,11);
+  if(v.length > 6) v = `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+  else if(v.length > 2) v = `(${v.slice(0,2)}) ${v.slice(2)}`;
+  else if(v.length) v = `(${v}`;
+  this.value = v;
+});
+
+document.addEventListener('keydown', e => {
+  if(e.key==='Enter' && document.activeElement.classList.contains('lead-input')) submitLead();
+});
+</script>
+</body>
+</html>
